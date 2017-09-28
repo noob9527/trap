@@ -31,16 +31,29 @@ test case mainly comes from [《ECMAScript 6 入门》](http://es6.ruanyifeng.co
 
 ### typescript
 test case mainly comes from [《Official Handbook》](https://www.typescriptlang.org/docs/home.html), write using jest.
-- [AdvancedTypes](./typescript/tests/AdvancedTypes.ts)
-- [BasicTypes](./typescript/tests/BasicTypes.ts)
-- [Classes](./typescript/tests/Classes.ts)
-- [Decorators](./typescript/tests/Decorators.ts)
-- [Enums](./typescript/tests/Enums.ts)
-- [Functions](./typescript/tests/Functions.ts)
-- [Generics](./typescript/tests/Generics.ts)
-- [Interfaces](./typescript/tests/Interfaces.ts)
-- [TypesCompatibility](./typescript/tests/TypesCompatibility.ts)
-- [TypesInference](./typescript/tests/TypesInference.ts)
+- [AdvancedTypes](./typescript/tests/syntax/AdvancedTypes.ts)
+- [BasicTypes](./typescript/tests/syntax/BasicTypes.ts)
+- [Classes](./typescript/tests/syntax/Classes.ts)
+- [Decorators](./typescript/tests/syntax/Decorators.ts)
+- [Enums](./typescript/tests/syntax/Enums.ts)
+- [Functions](./typescript/tests/syntax/Functions.ts)
+- [Generics](./typescript/tests/syntax/Generics.ts)
+- [Interfaces](./typescript/tests/syntax/Interfaces.ts)
+- [TypesCompatibility](./typescript/tests/syntax/TypesCompatibility.ts)
+- [TypesInference](./typescript/tests/syntax/TypesInference.ts)
+
+### rxjs
+test case mainly comes from [《Official Manual》](http://reactivex.io/rxjs/manual/overview.html), write using jest.
+- [Observable](./typescript/tests/rxjs/Observable.ts)
+- [Subject](./typescript/tests/rxjs/Subject.ts)
+- [Scheduler](./typescript/tests/rxjs/Scheduler.ts)
+- Operator
+    - [Combination](./typescript/tests/rxjs/operator/Combination.ts)
+    - [Creation](./typescript/tests/rxjs/operator/Creation.ts)
+    - [Custom](./typescript/tests/rxjs/operator/Custom.ts)
+    - [Filtering](./typescript/tests/rxjs/operator/Filtering.ts)
+    - [Transformation](./typescript/tests/rxjs/operator/Transformation.ts)
+    - [Utility](./typescript/tests/rxjs/operator/Utility.ts)
 
 ### kotlin
 test case mainly comes from [《Kotlin in Action》](https://book.douban.com/subject/26687631/), write using junit and assertj.

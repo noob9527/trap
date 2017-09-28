@@ -9,7 +9,11 @@
   },
   "devDependencies": {
     "@types/jest": "^20.0.8",
+    "@types/node": "^8.0.31",
+    "@types/sinon": "^2.3.5",
     "jest": "^20.0.4",
+    "rxjs": "^5.4.3",
+    "sinon": "^4.0.0",
     "ts-jest": "^20.0.10",
     "tslint": "^5.7.0",
     "typescript": "^2.4.2"

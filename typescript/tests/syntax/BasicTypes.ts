@@ -65,3 +65,9 @@ test('类型断言', ()=>{
     expect((<string>foo).length).toBe(3);
     expect((foo as string).length).toBe(3);
 });
+
+test('类型断言失败不会立即报错', () => {
+    const foo: any = 'foo';
+    const num: number = foo as number;
+    expect(() => num.toFixed()).toThrow()
+})

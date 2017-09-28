@@ -1,5 +1,8 @@
 
 test('修饰器第一个实参对静态成员来说是类的构造函数，对实例成员来说则是类的原型对象', () => {
+    let staticTarget;
+    let instanceTarget;
+
     class Foo {
         @Static
         static foo1() { }
@@ -7,8 +10,6 @@ test('修饰器第一个实参对静态成员来说是类的构造函数，对�
         foo2() { }
     }
 
-    let staticTarget;
-    let instanceTarget;
     function Static(target: new () => Foo, name: string) {
         staticTarget = target;
     }
