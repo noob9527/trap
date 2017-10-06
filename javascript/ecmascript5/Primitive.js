@@ -5,6 +5,10 @@ var should=require('should');
 var log=console.log.bind(console);
 
 describe('Primitive',function () {
+    it('6个falsy值', function() {
+        (!!(+0 || -0 || NaN || '' || null || undefined)).should.not.ok();
+    });
+
     describe('null与undefined',function () {
         it('typeof null返回object',function () {
             (typeof null).should.equal('object');

@@ -249,17 +249,16 @@ describe('Function',function () {
             }
             fn1();
         });
-        it('严格模式下对以上属性的读写操作会报错', function () {
+        it('严格模式下对callee, caller属性的读写操作会报错', function () {
             'use strict'
             function fn1() {
-                arguments.callee;
+                return arguments.callee;
             }
             function fn2() {
-                arguments.caller;
+                return fn2.caller;
             }
-            var errMsg = '\'caller\', \'callee\', and \'arguments\' properties may not be accessed on strict mode functions or the arguments objects for calls to them'
-            fn1.should.throw(errMsg);
-            fn2.should.throw(errMsg);
+            fn1.should.throw()
+            fn2.should.throw()
         });
     });
 

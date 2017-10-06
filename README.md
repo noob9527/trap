@@ -1,7 +1,7 @@
 # trap
 
 ### ecmascript 5
-test case mainly comes from [《JavaScript: The Definitive Guide》](https://book.douban.com/subject/5303032/), write using mocha and shouldjs.
+[《JavaScript: The Definitive Guide》](https://book.douban.com/subject/5303032/), write using mocha and shouldjs.
 - [Array](./javascript/ecmascript5/Array.js)
 - [Function](./javascript/ecmascript5/Function.js)
 - [Json](./javascript/ecmascript5/Json.js)
@@ -13,7 +13,7 @@ test case mainly comes from [《JavaScript: The Definitive Guide》](https://boo
 - [Syntax](./javascript/ecmascript5/Syntax.js)
 
 ### ecmascript 6
-test case mainly comes from [《ECMAScript 6 入门》](http://es6.ruanyifeng.com/), write using ava and chai.
+[《ECMAScript 6 入门》](http://es6.ruanyifeng.com/), write using ava and chai.
 - [ADT](./javascript/ecmascript6/ADT.js)
 - [Array](./javascript/ecmascript6/Array.js)
 - [BlockScope](./javascript/ecmascript6/BlockScope.js)
@@ -30,7 +30,7 @@ test case mainly comes from [《ECMAScript 6 入门》](http://es6.ruanyifeng.co
 - [Syntax](./javascript/ecmascript6/Syntax.js)
 
 ### typescript
-test case mainly comes from [《Official Handbook》](https://www.typescriptlang.org/docs/home.html), write using jest.
+[《Official Handbook》](https://www.typescriptlang.org/docs/home.html), write using jest.
 - [AdvancedTypes](./typescript/tests/syntax/AdvancedTypes.ts)
 - [BasicTypes](./typescript/tests/syntax/BasicTypes.ts)
 - [Classes](./typescript/tests/syntax/Classes.ts)
@@ -43,7 +43,7 @@ test case mainly comes from [《Official Handbook》](https://www.typescriptlang
 - [TypesInference](./typescript/tests/syntax/TypesInference.ts)
 
 ### rxjs
-test case mainly comes from [《Official Manual》](http://reactivex.io/rxjs/manual/overview.html), write using jest.
+[《Official Manual》](http://reactivex.io/rxjs/manual/overview.html), write using jest.
 - [Observable](./typescript/tests/rxjs/Observable.ts)
 - [Subject](./typescript/tests/rxjs/Subject.ts)
 - [Scheduler](./typescript/tests/rxjs/Scheduler.ts)
@@ -55,5 +55,8 @@ test case mainly comes from [《Official Manual》](http://reactivex.io/rxjs/man
     - [Transformation](./typescript/tests/rxjs/operator/Transformation.ts)
     - [Utility](./typescript/tests/rxjs/operator/Utility.ts)
 
+### python
+[《Beginning Python》](https://book.douban.com/subject/1482162/), write using unittest.
+
 ### kotlin
-test case mainly comes from [《Kotlin in Action》](https://book.douban.com/subject/26687631/), write using junit and assertj.
+[《Kotlin in Action》](https://book.douban.com/subject/26687631/), write using junit and assertj.
