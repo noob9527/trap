@@ -1,4 +1,4 @@
-package cn.staynoob.trap.java.interfacespec;
+package cn.staynoob.trap.java.basic.interfacespec;
 
 public interface IWithMethodImplementation2 {
     default String foo() {

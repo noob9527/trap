@@ -31,16 +31,16 @@
 
 ### typescript
 [《Official Handbook》](https://www.typescriptlang.org/docs/home.html), write using jest.
-- [AdvancedTypes](./typescript/tests/syntax/AdvancedTypes.ts)
-- [BasicTypes](./typescript/tests/syntax/BasicTypes.ts)
-- [Classes](./typescript/tests/syntax/Classes.ts)
-- [Decorators](./typescript/tests/syntax/Decorators.ts)
-- [Enums](./typescript/tests/syntax/Enums.ts)
-- [Functions](./typescript/tests/syntax/Functions.ts)
-- [Generics](./typescript/tests/syntax/Generics.ts)
-- [Interfaces](./typescript/tests/syntax/Interfaces.ts)
-- [TypesCompatibility](./typescript/tests/syntax/TypesCompatibility.ts)
-- [TypesInference](./typescript/tests/syntax/TypesInference.ts)
+- [AdvancedTypes](./typescript/tests/basic/AdvancedTypes.ts)
+- [BasicTypes](./typescript/tests/basic/BasicTypes.ts)
+- [Classes](./typescript/tests/basic/Classes.ts)
+- [Decorators](./typescript/tests/basic/Decorators.ts)
+- [Enums](./typescript/tests/basic/Enums.ts)
+- [Functions](./typescript/tests/basic/Functions.ts)
+- [Generics](./typescript/tests/basic/Generics.ts)
+- [Interfaces](./typescript/tests/basic/Interfaces.ts)
+- [TypesCompatibility](./typescript/tests/basic/TypesCompatibility.ts)
+- [TypesInference](./typescript/tests/basic/TypesInference.ts)
 
 ### rxjs
 [《Official Manual》](http://reactivex.io/rxjs/manual/overview.html), write using jest.
@@ -55,8 +55,26 @@
     - [Transformation](./typescript/tests/rxjs/operator/Transformation.ts)
     - [Utility](./typescript/tests/rxjs/operator/Utility.ts)
 
-### python
-[《Beginning Python》](https://book.douban.com/subject/1482162/), write using unittest.
-
 ### kotlin
-[《Kotlin in Action》](https://book.douban.com/subject/26687631/), write using junit and assertj.
+[《Kotlin in Action》](https://book.douban.com/subject/26687631/), write using junit5 and assertj.
+- [Annotation](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/annotation/AnnotationSpec.kt)
+- [Collection](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/collection/CollectionSpec.kt)
+- [Extension](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/extension/ExtensionSpec.kt)
+- [Lambda](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/lambda/LambdaSpec.kt)
+- [NullSafety](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/nullsafety/NullSafetySpec.kt)
+- [Object](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/object/ObjectSpec.kt)
+- [Operator](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/operator/OperatorSpec.kt)
+- [TopLevel](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/toplevel/TopLevelSpec.kt)
+- [BasicType](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/BasicTypeSpec.kt)
+- [Class](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/ClassSpec.kt)
+- [Enum](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/EnumSpec.kt)
+- [Function](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/FunctionSpec.kt)
+- [Generic](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/GenericSpec.kt)
+- [Interface](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/InterfaceSpec.kt)
+- [Micellaneous](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/MicellaneousSpec.kt)
+- [Property](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/PropertySpec.kt)
+- [Reflection](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/ReflectionSpec.kt)
+- [Syntax](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/SyntaxSpec.kt)
+
+### python
+[《Beginning Python》](https://book.douban.com/subject/1482162/), write using unittest. TBD
