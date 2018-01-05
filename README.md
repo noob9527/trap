@@ -41,6 +41,7 @@
 - [Interfaces](./typescript/tests/basic/Interfaces.ts)
 - [TypesCompatibility](./typescript/tests/basic/TypesCompatibility.ts)
 - [TypesInference](./typescript/tests/basic/TypesInference.ts)
+- [StrictNullChecks](./typescript/tests/basic/strictNullChecks/StrictNullChecks.ts)
 
 ### rxjs
 [《Official Manual》](http://reactivex.io/rxjs/manual/overview.html), write using jest.

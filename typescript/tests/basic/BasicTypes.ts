@@ -20,7 +20,7 @@ test('any与Object的区别', () => {
     // bar.match
 });
 
-describe('空值', () => {
+describe('空值(非strictNullChecks mode)', () => {
 
     it('void类型', () => {
         let unusable: void;
@@ -55,13 +55,13 @@ describe('never', () => {
         const error = (): never => {
             throw new Error();
         }
-        expect(():number => error()).toThrow();
-        expect(():string => error()).toThrow();
+        expect((): number => error()).toThrow();
+        expect((): string => error()).toThrow();
     });
 });
 
-test('类型断言', ()=>{
-    let foo:any = 'foo';
+test('类型断言', () => {
+    let foo: any = 'foo';
     expect((<string>foo).length).toBe(3);
     expect((foo as string).length).toBe(3);
 });
