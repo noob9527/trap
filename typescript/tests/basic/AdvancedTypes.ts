@@ -136,3 +136,30 @@ test('mapped types', () => {
     type PartialPerson = Partial<Person>;
     type ReadonlyPerson = Readonly<Person>;
 });
+
+test('ts允许将this作为类型使用', () => {
+    abstract class Parent {
+        copy(patch?: (target: this) => void): this {
+            const ctor = this.constructor as (new () => this);
+            const res = new ctor();
+            Object.assign(res, this);
+            if (patch) patch(res);
+            return res;
+        }
+    }
+    class Child extends Parent {
+        constructor(
+            public foo: string,
+            public bar: string,
+        ) {
+            super();
+        }
+    }
+    const child1 = new Child('foo', 'bar');
+    const child2 = child1.copy();
+    const child3 = child1.copy(child => child.foo = 'bar');
+    expect(child2).not.toBe(child1);
+    expect(child2).toEqual(child1);
+    expect(child3.foo).toBe('bar');
+    expect(child3.bar).toBe('bar');
+});

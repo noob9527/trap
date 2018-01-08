@@ -106,17 +106,17 @@ describe('creation', () => {
     it('fromPromise reject', done => {
         Observable
             .fromPromise(Promise.reject(0))
-            .subscribe(fail, (err) => {
+            .subscribe(fail, err => {
                 expect(err).toBe(0);
                 done();
             }, fail);
-    })
+    });
 
     it('interval', () => {
         const observable = Observable
             .interval(20, testScheduler)
             .take(3);
         expectObservable(observable)
-            .toBe('--0-1-(2|)', [0, 1, 2])
+            .toBe('--0-1-(2|)', [0, 1, 2]);
     });
 });

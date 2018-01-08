@@ -19,10 +19,10 @@ describe('Observable', () => {
 
     beforeEach(() => {
         testScheduler = new TestScheduler(
-            (actual, expected) => expect(actual).toEqual(expected)
+            (actual, expected) => expect(actual).toEqual(expected),
         );
         expectObservable = testScheduler.expectObservable
-            .bind(testScheduler)
+            .bind(testScheduler);
         expectSubscriptions = testScheduler.expectSubscriptions
             .bind(testScheduler);
         hot = testScheduler.createHotObservable
@@ -35,7 +35,7 @@ describe('Observable', () => {
             testScheduler.flush();
         } finally {
             testScheduler = new TestScheduler(
-                (actual, expected) => expect(actual).toEqual(expected)
+                (actual, expected) => expect(actual).toEqual(expected),
             );
         }
     });
