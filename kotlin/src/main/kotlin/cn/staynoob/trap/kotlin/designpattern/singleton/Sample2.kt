@@ -1,5 +1,6 @@
 package cn.staynoob.trap.kotlin.designpattern.singleton
 
+@Suppress("UNUSED_PARAMETER")
 class Sample2 private constructor(
         foo: String
 ) {

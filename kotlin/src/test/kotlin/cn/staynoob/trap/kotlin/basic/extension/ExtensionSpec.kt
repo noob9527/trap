@@ -63,6 +63,7 @@ class ExtensionSpec {
             fun sayHello() = "foo"
         }
 
+        @Suppress("EXTENSION_SHADOWED_BY_MEMBER")
         fun Foo.sayHello() = "bar"
         Assertions.assertThat(Foo().sayHello()).isEqualTo("foo")
     }
