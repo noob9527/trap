@@ -20,10 +20,10 @@ describe('combination', () => {
 
     beforeEach(() => {
         testScheduler = new TestScheduler(
-            (actual, expected) => expect(actual).toEqual(expected)
+            (actual, expected) => expect(actual).toEqual(expected),
         );
         expectObservable = testScheduler.expectObservable
-            .bind(testScheduler)
+            .bind(testScheduler);
         expectSubscriptions = testScheduler.expectSubscriptions
             .bind(testScheduler);
         hot = testScheduler.createHotObservable
@@ -36,14 +36,14 @@ describe('combination', () => {
             testScheduler.flush();
         } finally {
             testScheduler = new TestScheduler(
-                (actual, expected) => expect(actual).toEqual(expected)
+                (actual, expected) => expect(actual).toEqual(expected),
             );
         }
     });
 
     /**
      * Returns an Observable that mirrors the first source Observable
-     * to emit an item from the combination of 
+     * to emit an item from the combination of
      * this Observable and supplied Observables.
      * @see Promise.race
      */
@@ -68,16 +68,16 @@ describe('combination', () => {
         const e1 = Observable.forkJoin(
             hot('--a--b--c--d--|'),
             hot('(b|)'),
-            hot('--1--2--3--|')
+            hot('--1--2--3--|'),
         );
-        const expected = '--------------(x|)'
+        const expected = '--------------(x|)';
         expectObservable(e1)
-            .toBe(expected, { x: ['d', 'b', '3'] })
+            .toBe(expected, { x: ['d', 'b', '3'] });
     });
 
     /**
-     * Combines multiple Observables to create an Observable 
-     * whose values are calculated from the latest values 
+     * Combines multiple Observables to create an Observable
+     * whose values are calculated from the latest values
      * of each of its input Observables.
      * @see Promise.all
      */

@@ -22,10 +22,10 @@ describe('creation', () => {
 
     beforeEach(() => {
         testScheduler = new TestScheduler(
-            (actual, expected) => expect(actual).toEqual(expected)
+            (actual, expected) => expect(actual).toEqual(expected),
         );
         expectObservable = testScheduler.expectObservable
-            .bind(testScheduler)
+            .bind(testScheduler);
         expectSubscriptions = testScheduler.expectSubscriptions
             .bind(testScheduler);
         hot = testScheduler.createHotObservable
@@ -38,19 +38,19 @@ describe('creation', () => {
             testScheduler.flush();
         } finally {
             testScheduler = new TestScheduler(
-                (actual, expected) => expect(actual).toEqual(expected)
+                (actual, expected) => expect(actual).toEqual(expected),
             );
         }
     });
 
     it('empty', () => {
         expectObservable(Observable.empty())
-            .toBe('|')
+            .toBe('|');
     });
 
     it('throw', () => {
         expectObservable(Observable.throw('error'))
-            .toBe('#')
+            .toBe('#');
     });
 
     it('create', done => {
@@ -74,12 +74,12 @@ describe('creation', () => {
 
     it('of', () => {
         expectObservable(Observable.of(1, 2, 3))
-            .toBe('(abc|)', { a: 1, b: 2, c: 3 })
+            .toBe('(abc|)', { a: 1, b: 2, c: 3 });
     });
 
     it('from', () => {
         expectObservable(Observable.from([1, 2, 3]))
-            .toBe('(abc|)', { a: 1, b: 2, c: 3 })
+            .toBe('(abc|)', { a: 1, b: 2, c: 3 });
     });
 
     it('fromEvent', done => {

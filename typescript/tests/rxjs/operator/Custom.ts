@@ -19,13 +19,4 @@ describe('operator', () => {
         expect(spy.getCalls().map(e => e.args[0]))
             .toEqual([2, 3, 4]);
     });
-
-    
-
-  
-
-
-
-
-
 });
