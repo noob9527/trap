@@ -39,8 +39,8 @@
 - [Functions](./typescript/tests/basic/Functions.ts)
 - [Generics](./typescript/tests/basic/Generics.ts)
 - [Interfaces](./typescript/tests/basic/Interfaces.ts)
-- [TypesCompatibility](./typescript/tests/basic/TypesCompatibility.ts)
-- [TypesInference](./typescript/tests/basic/TypesInference.ts)
+- [TypeCompatibility](./typescript/tests/basic/TypeCompatibility.ts)
+- [TypeInference](./typescript/tests/basic/TypeInference.ts)
 - [StrictNullChecks](./typescript/tests/basic/strictNullChecks/StrictNullChecks.ts)
 
 ### rxjs
