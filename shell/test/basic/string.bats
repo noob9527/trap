@@ -11,7 +11,7 @@ load '../../lib/bats-assert/load'
     [[ $foo='bar' ]]
 }
 
-@test '使用单引号创建直接量' {
+@test '使用单引号创建字符串直接量' {
     foo='foo'
     bar='$foo'
     [[ bar='$foo' ]]
