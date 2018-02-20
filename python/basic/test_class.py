@@ -59,40 +59,18 @@ class ClassTestCase(unittest.TestCase):
         child = Child()
         self.assertTrue(hasattr(child, 'foo'))
 
-    def testProperty(self):
-        class Foo:
-            def __init__(self):
-                self._foo = 'foo'
-
-            def __set_foo(self, value):
-                self._foo = value
-
-            def __get_foo(self):
-                return self._foo
-
-            @property
-            def read_only(self):
-                return self._foo
-
-            foo = property(__get_foo, __set_foo)
-
-        foo = Foo()
-        self.assertEqual(foo.read_only, 'foo')
-        with self.assertRaises(AttributeError):
-            foo.read_only = 'bar'
-
-        self.assertEqual(foo.foo, 'foo')
-        foo.foo = 'bar'
-        self.assertEqual(foo.foo, 'bar')
-
+    # 静态方法可以被类直接调用，没有self参数
     def testStaticMethod(self):
         class Foo:
             @staticmethod
             def foo(): return 'foo'
+
         self.assertIsNotNone(Foo.foo())
 
+    # 类方法也可以被类直接调用，同时会自动绑定cls参数
     def testClassMethod(self):
         class Foo:
             @classmethod
             def foo(cls): return cls
+
         self.assertIsNotNone(Foo.foo())

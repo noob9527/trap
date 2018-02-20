@@ -11,7 +11,7 @@ class OperatorTestCase(unittest.TestCase):
     def testConcatMultiOperator(self):
         self.assertTrue(1 < 2 < 3)
 
-    def testCompareSequance(self):
+    def testCompareSequence(self):
         self.assertTrue('ab' < 'ba')
         self.assertTrue([1, 2] < [2, 1])
         self.assertTrue([1, 1, [1, 2]] < [1, 1, [1, 3]])
@@ -25,3 +25,4 @@ class OperatorTestCase(unittest.TestCase):
         foo = bar = []
         self.assertEqual(foo, [])
         self.assertIs(foo, bar)
+

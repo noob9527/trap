@@ -78,7 +78,7 @@
 - [Syntax](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/SyntaxSpec.kt)
 
 ### python
-[《Beginning Python》](https://book.douban.com/subject/1482162/), write using unittest
+TBD, write using unittest
 
 ### shell
 [official manual](https://www.gnu.org/software/bash/manual/bash.html#Command-Substitution), [shell styleguide](https://google.github.io/styleguide/shell.xml), write using bats
