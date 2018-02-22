@@ -27,9 +27,19 @@ load '../../../lib/bats-assert/load'
     assert_equal $status 1
 }
 
-@test 'assert_output' {
+@test 'assert_output --partial(-p)' {
+  # to match substring
   run echo 'foo'
-  assert_output --partial 'f'
-  run assert_output --partial 'b'
-  assert_equal $status 1
+  assert_output -p 'f'
+  run assert_output -p 'b'
+  assert_failure
+}
+
+@test 'assert_output --regexp(-e) ' {
+  # to test output match extended regular expression
+  run echo 'foo'
+  run assert_output -e '^[a-z]{3}'
+  assert_success
+  run assert_output -e '^[a-z]{4}'
+  assert_failure
 }

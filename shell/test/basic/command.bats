@@ -37,6 +37,18 @@ load '../../lib/bats-assert/load'
     # assert_failure
 }
 
+@test 'regular expression test [[ "string" =~ pattern ]]' {
+    [[ "foo" =~ [a-z]{3} ]]
+    ! [[ "f-oo" =~ [a-z]{3} ]]
+}
+
+@test 'regular expression capture by BASH_REMATCH' {
+    [[ "foo-bar" =~ (.*)-(.*) ]]
+    assert_equal ${BASH_REMATCH[0]} "foo-bar"
+    assert_equal ${BASH_REMATCH[1]} "foo"
+    assert_equal ${BASH_REMATCH[2]} "bar"
+}
+
 @test 'file test' {
     # [[ -e <FILE> ]] 文件存在
     # [[ -f <FILE> ]] 文件存在且是常规文件
