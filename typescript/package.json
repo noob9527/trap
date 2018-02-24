@@ -16,7 +16,7 @@
     "sinon": "^4.0.0",
     "ts-jest": "^20.0.10",
     "tslint": "^5.7.0",
-    "typescript": "^2.4.2"
+    "typescript": "^2.7.2"
   },
   "jest": {
     "collectCoverageFrom": [

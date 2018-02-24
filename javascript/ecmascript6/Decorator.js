@@ -82,6 +82,19 @@ test('修饰类的方法', t => {
     foo.foo.should.equal('foo');
 });
 
+test('修饰静态成员', t => {
+    class Foo {
+        @Bar
+        static foo = 'foo'
+    }
+    function Bar(target, name, descriptor) {
+        (typeof target).should.equal('function');
+        target.name.should.equal('Foo');
+        name.should.equal('foo');
+        (typeof descriptor).should.equal('object');
+    }
+});
+
 test('修饰类的属性', t => {
     class Foo {
         @Bar

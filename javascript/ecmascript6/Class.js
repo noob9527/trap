@@ -184,7 +184,7 @@ test('子类如果有自己的构造函数，则必须在该函数中调用父�
         }
     }
     new Child1().should.exist;
-    t.throws(() => new Child2(), 'this is not defined');
+    t.throws(() => new Child2());
     new Child3().should.exist;
 });
 

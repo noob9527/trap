@@ -13,16 +13,18 @@
 - [Syntax](./javascript/ecmascript5/Syntax.js)
 
 ### ecmascript 6
-[《ECMAScript 6 入门》](http://es6.ruanyifeng.com/), write using ava and chai.
+[Understanding ECMAScript6](https://leanpub.com/understandinges6/read/), [ECMAScript 6 入门](http://es6.ruanyifeng.com/), write using ava and chai.
 - [ADT](./javascript/ecmascript6/ADT.js)
 - [Array](./javascript/ecmascript6/Array.js)
 - [BlockScope](./javascript/ecmascript6/BlockScope.js)
 - [Class](./javascript/ecmascript6/Class.js)
+- [Decorator](./javascript/ecmascript6/Decorator.js)
 - [Destructing](./javascript/ecmascript6/Destructing.js)
 - [Function](./javascript/ecmascript6/Function.js)
 - [Generator](./javascript/ecmascript6/Generator.js)
 - [Object](./javascript/ecmascript6/Object.js)
 - [Promise](./javascript/ecmascript6/Promise.js)
+- [Proxy](./javascript/ecmascript6/Proxy.js)
 - [Reflect](./javascript/ecmascript6/Reflect.js)
 - [RegExp](./javascript/ecmascript6/RegExp.js)
 - [String](./javascript/ecmascript6/String.js)
