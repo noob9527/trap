@@ -5,7 +5,8 @@
     "test": "node --harmony node_modules/.bin/ava ecmascript6 --verbose",
     "test:watch": "node --harmony node_modules/.bin/ava ecmascript6 --verbose --watch",
     "start": "npm run test:watch",
-    "es5test": "node node_modules/.bin/mocha --watch --ui bdd --recursive ecmascript5"
+    "es5test": "node node_modules/.bin/mocha --ui bdd --recursive ecmascript5",
+    "es5test:watch": "node node_modules/.bin/mocha --watch --ui bdd --recursive ecmascript5"
   },
   "author": "xy",
   "devDependencies": {

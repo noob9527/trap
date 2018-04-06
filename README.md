@@ -1,4 +1,5 @@
 # trap
+[![Build Status](https://travis-ci.org/noob9527/trap.svg?branch=master)](https://travis-ci.org/noob9527/trap)
 
 ### ecmascript 5
 [《JavaScript: The Definitive Guide》](https://book.douban.com/subject/5303032/), write using mocha and shouldjs.

@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - stable
+
+language: java
+java:
+  - oraclejdk8
+
+language: python
+python:
+  - "3.5"
+
+install: 
+  - cd $TRAVIS_BUILD_DIR/javascript && npm install
+  - cd $TRAVIS_BUILD_DIR/typescript && npm install
+script: 
+  - cd $TRAVIS_BUILD_DIR/javascript && npm run es5test
+  - cd $TRAVIS_BUILD_DIR/javascript && npm run test
+  - cd $TRAVIS_BUILD_DIR/typescript && npm test
+  - cd $TRAVIS_BUILD_DIR/python && python -m unittest discover -v
+  - cd $TRAVIS_BUILD_DIR/shell && make test
+  - cd $TRAVIS_BUILD_DIR/java && ./gradlew test
+  - cd $TRAVIS_BUILD_DIR/kotlin && ./gradlew test
+

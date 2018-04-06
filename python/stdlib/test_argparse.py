@@ -44,6 +44,6 @@ class ArgParseTestCase(unittest.TestCase):
         parser = ArgumentParser()
         parser.add_argument('-foo')
         parser.add_argument('-bar', default='BAR')
-        res = parser.parse_args()
+        res = parser.parse_args('')
         self.assertIsNone(res.foo)
         self.assertEqual(res.bar, 'BAR')
