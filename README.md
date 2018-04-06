@@ -74,7 +74,7 @@
 - [Function](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/FunctionSpec.kt)
 - [Generic](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/GenericSpec.kt)
 - [Interface](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/InterfaceSpec.kt)
-- [Micellaneous](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/MicellaneousSpec.kt)
+- [Miscellaneous](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/MiscellaneousSpec.kt)
 - [Property](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/PropertySpec.kt)
 - [Reflection](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/ReflectionSpec.kt)
 - [Syntax](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/SyntaxSpec.kt)

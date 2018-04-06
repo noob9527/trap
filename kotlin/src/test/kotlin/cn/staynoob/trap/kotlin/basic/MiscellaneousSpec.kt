@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 
 @Suppress("UNUSED_VARIABLE")
 @DisplayName("杂项")
-class MicellaneousSpec {
+class MiscellaneousSpec {
 
     @Test
     @DisplayName("显式类型转换")
