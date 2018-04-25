@@ -132,6 +132,7 @@ class ClassSpec {
                     this.foo = foo
                 }
             }
+
             val foo = Foo("foo", "bar")
             assertThat(foo.foo).isEqualTo("foo")
             assertThat(foo.bar).isEqualTo("bar")
@@ -139,12 +140,12 @@ class ClassSpec {
 
         @Test
         @DisplayName("可以声明多个构造方法，每个构造方法要么初始化基类，要么委托给这么做了的其它构造方法")
-        fun test300(){
+        fun test300() {
             open class Parent
-            class Child: Parent {
-                constructor():super()
-                constructor(foo:String):this()
-                constructor(bar:Int):this("foo")
+            class Child : Parent {
+                constructor() : super()
+                constructor(foo: String) : this()
+                constructor(bar: Int) : this("foo")
             }
         }
 
@@ -180,6 +181,21 @@ class ClassSpec {
             assertThat(foo2).isEqualTo(Foo("foo", "baz"))
         }
 
+        @Test
+        @DisplayName("不在主构造函数中的属性不会被拷贝")
+        fun test300() {
+            data class Foo(
+                    val foo: String?,
+                    val bar: String?
+            ) {
+                var baz: String? = null
+            }
+
+            val foo1 = Foo("foo", "bar").apply { baz = "baz" }
+            val foo2 = foo1.copy()
+            assertThat(foo1.baz).isNotNull()
+            assertThat(foo2.baz).isNull()
+        }
     }
 
     private interface IFoo {

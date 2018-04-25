@@ -111,7 +111,7 @@ class NullSafetySpec {
         }.hasSameClassAs(IllegalStateException())
         assertThatThrownBy {
             demo.platformType.toUpperCase()
-        }.hasSameClassAs(TypeCastException())
+        }.hasSameClassAs(IllegalStateException())
         val platform2: String? = demo.platformType
     }
 
