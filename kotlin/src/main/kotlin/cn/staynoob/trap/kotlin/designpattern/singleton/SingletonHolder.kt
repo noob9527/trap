@@ -9,6 +9,9 @@ open class SingletonHolder<out T, in A>(creator: (A) -> T) {
 
     @Volatile private var instance: T? = null
 
+    /**
+     * double-check idiom from effective java
+     */
     fun getInstance(arg: A): T {
         val i = instance
         if (i != null) return i

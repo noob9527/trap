@@ -26,6 +26,7 @@ repositories {
 }
 
 dependencies {
+    compile("com.sun.mail:javax.mail:+")
     testCompile("org.junit.jupiter:junit-jupiter-api:${junit_jupiter_version}")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:${junit_jupiter_version}")
     // To avoid compiler warnings about @API annotations in JUnit code

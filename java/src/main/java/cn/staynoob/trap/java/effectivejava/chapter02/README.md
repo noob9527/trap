@@ -41,7 +41,9 @@ disadvantages:
 3. Builder pattern is a good choice when designing classes whose constructors or static factories would have more than a handful of parameters.
 
 ### Enforce the singleton property with a private constructor or an enum type
-A single-element enum type is the best way to implement a singleton
+Before release 1.5, there were two ways to implement singletons. Both are based on keeping the constructor private and exporting a public static member to provide access to the sole instance. Note that a privileged client can invoke the private constructor reflectively with the aid of the AccessibleObject.setAccessible method. If you need to defend against this attack, modify the constructor to make it throw an exception if it's asked to create a second instance.\
+To make a singleton class that is implemented using either of the previous approaches serializable, it is not sufficient merely to add implements Serializable to its declaration. To maintain the singleton guarantee, you have to declare all instance fields transient and provide a readResolve method. Otherwise, each time a serialized instance is deserialized, a new instance will be created.\
+As of release 1.5, A single-element enum type is the best way to implement a singleton
 ```java
 public enum Elvis {
     INSTANCE;
