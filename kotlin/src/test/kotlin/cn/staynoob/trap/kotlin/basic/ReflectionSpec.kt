@@ -1,6 +1,7 @@
 package cn.staynoob.trap.kotlin.basic
 
-import org.assertj.core.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -82,4 +83,27 @@ class ReflectionSpec {
             assertThatThrownBy { ::fn.annotations }
         }
     }
+
+    @Nested
+    @DisplayName("反射参数")
+    inner class KParameterSpec {
+
+        private fun test100Fn1(foo: String) = foo
+        private fun test100Fn2(foo: String?) = foo
+        private fun test100Fn3(foo: String = "foo") = foo
+        @Test
+        @DisplayName("isOptional")
+        fun test100() {
+            assertThat(::test100Fn1.parameters[0].isOptional).isFalse()
+            assertThat(::test100Fn2.parameters[0].isOptional).isFalse()
+            assertThat(::test100Fn3.parameters[0].isOptional).isTrue()
+        }
+    }
+
+    @Nested
+    @DisplayName("反射类型")
+    inner class KTypeSpec {
+
+    }
+
 }

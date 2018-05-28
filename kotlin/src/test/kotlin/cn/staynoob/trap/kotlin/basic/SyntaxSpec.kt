@@ -78,7 +78,7 @@ class SyntaxSpec {
     }
 
     @Nested
-    @DisplayName("结构声明")
+    @DisplayName("解构声明")
     inner class DestructingDeclaration {
 
         @Test
