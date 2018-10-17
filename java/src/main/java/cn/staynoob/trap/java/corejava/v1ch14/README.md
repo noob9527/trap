@@ -87,7 +87,25 @@ java.util.concurrent.atomic包中有很多类使用了很高效的机器级指�
 ### 14.5.11 DeadLock
 todo
 ### 14.5.12 ThreadLocal
-todo
+有时为了避免使用共享变量，可以使用`ThreadLocal`辅助类为各个线程提供各自的实例。例如，`SimpleDateFormat`类不是线程安全的。假设有一个静态变量：
+```java
+public static final SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+```
+如果两个线程同时执行以下操作
+```java
+String dataStamp = dateFormat.format(new Date());
+```
+结果可能很混乱，因为`dateFormat`使用的内部数据结构可能会被并发的访问所破坏。要为每个线程构造一个实例，可以使用以下代码：
+```java
+public static final ThreadLocal<SimpleDateFormat> dateformat = new ThreadLocal<SimpleDateFormat>() {
+    protected SimpleDateFormat initialValue() {
+        return new SimpleDateFormat("yyyy-MM-dd");
+    }
+}
+```
+在一个给定线程中首次调用`get`时，会调用`initialValue`方法。在此之后，`get`方法会返回属于当前线程的那个实例。\
+在多个线程中生成随机数也存在类似问题，`java.util.Random`类是线程安全的。但是如果多个线程需要等待一个共享的随机数生成器，会很低效，可以使用`ThreadLocalRandom`来获取属于当前线程的生成器。
+
 ### 14.5.13 锁测试与超时
 todo
 ### 14.5.14 读/写锁

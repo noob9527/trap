@@ -1,6 +1,7 @@
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-aux_source_directory(. TEST_FILES)
+#aux_source_directory(. TEST_FILES)
+FILE(GLOB TEST_FILES *.test.cpp)
 
 # 指定生成目标
 add_executable(

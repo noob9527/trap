@@ -1,11 +1,15 @@
 # Chapter03 File I/O
 
 ## 1. Introduction
+skipped
+
 ## 2. File Descriptors
+> File descriptor is integer that uniquely identifies an open file of the process.
 To the kernel, all open files are referred to by file descriptors. A file descriptor is a non-negative integer. When we open an existing file or create a new file, the kernel returns a file descriptor to the process. When we want to read or write a file, we identify the file with the file descriptor that was returned by `open` or `creat` as an argument to either read or write.\
-Although their values are standardized by POSIX.1, the magic numbers 0,1,2 should be replaced in POSIX-compliant applications with the symbolic constants STDIN_FILENO, STDOUT_FILENO, and STDERR_FILENO to improve readability. these constants are defined in the <unistd.h> header.
-## 3. open and `openat` Functions
-The file descriptor returned by open and openat is guaranteed to be the lowest numbered unused descriptor. This fact is used by some applications to open a new file on standard input, standard output, or standard error. For example, an application might close standard output--normally, file descriptor 1--and then open another file, knowing that it will be opened on file descriptor 1. We'll see a better way to guarantee that a file is open on a given descriptor in Section 3.12, when we explore the dup2 function.\
+Although their values are standardized by POSIX.1, the magic numbers 0,1,2 should be replaced in POSIX-compliant applications with the symbolic constants `STDIN_FILENO`, `STDOUT_FILENO`, and `STDERR_FILENO` to improve readability. These constants are defined in the `<unistd.h>` header.
+
+## 3. `open` and `openat` Functions
+The file descriptor returned by `open` and `openat` is guaranteed to be the lowest numbered unused descriptor. This fact is used by some applications to open a new file on standard input, standard output, or standard error. For example, an application might close standard output--normally, file descriptor 1--and then open another file, knowing that it will be opened on file descriptor 1. We'll see a better way to guarantee that a file is open on a given descriptor in Section 3.12, when we explore the dup2 function.\
 The fd parameter distinguishes the `openat` function from the open function. There are three possibilities:
 1. The path parameter specifies an absolute pathname. In this case, the `fd` parameter is ignored and the `openat` function behaves like the open function.
 2. The path parameter specifies a relative pathname and the fd parameter is a file descriptor that specifies the starting location in the file system where the relative pathname is to be evaluated. The fd parameter is obtained by opening the directory where the relative pathname is to be evaluated.
@@ -13,8 +17,10 @@ The fd parameter distinguishes the `openat` function from the open function. The
 
 The `openat` function is one of a class of functions added to the latest version of POSIX.1 to address two problems. First, it gives threads a way to use relative pathnames to open files in directories other than the current working directory. As we'll see in Chapter 11, all threads in the same process share the same current working directory, so this makes it difficult for multiple threads in the same process to work in different directories at the same time. Second, it provides a way to avoid time-of-check-to-time-of-use(TOCTTOU) errors.
 The basic idea behind TOCTTOU errors is that a program is vulnerable if it makes two file-based function calls where the second call depends on the results of the first call. Because the two calls are not atomic, the file can change between the two calls, thereby invalidating the results of the first call, leading to a program error. TOCTTOU errors in the file system namespace generally deal with attempts to subvert file system permissions by tricking a privileged program into either reducing permissions on a privileged file or modifying a privileged file to open up a security hole.
+
 ### Filename and Pathname Truncation
-With POSIX.1, ths constant _POSIX_NO_TRUNC determines wheter long filenames and long components of pathnames are truncated or an error is returned. Linux always return an error.
+With POSIX.1, the constant `_POSIX_NO_TRUNC` determines whether long filenames and long components of pathnames are truncated or an error is returned. Linux always return an error.
+
 ## 4. `creat` Function
 ```c
 #include <fcntl.h>
@@ -62,6 +68,7 @@ cannot seek
 The file's offset can be greater than the file's current size, in which case the next write to the file will extend the file. This is referred to as creating a hole in a file and is allowed. Any bytes in a file that have not been written are read back as 0.\
 A hole in a file isn't required to have storage backing it on disk. Depending on the file system implementation, when you write after seeking past the end of a file, new disk blocks might be allocated to store the data, but there is no need to allocate disk blocks for the data between the old end of file and the location where you start writing.\
 Note that if `off_t` is a 32-bit integer, the maximum file size is 2^31 -1 bytes. Although you might enable 64-bit file offsets, your ability to create a file larger than 2GB(2^31 - 1 bytes) depends on the underlying file system type.
+
 ## 7. `read` Function
 Data is read from an open file with the read function.
 ```c
@@ -77,6 +84,7 @@ There are several cases in which the number of bytes actually read is less than 
 - When reading from a record-oriented device. Some record-oriented devices, such as magnetic tape, can return up to a single record at a time.
 - When interrupted by a signal and a partial amount of data has already been read.
 The read operation starts at the file's current offset. Before a successful return, the offset is incremented by the number of bytes actually read.
+
 ## 8. `write` Function
 Data is written to an open file with the write function
 ```c
@@ -86,8 +94,10 @@ ssize_t write(int fd, const void *buf, size_t nbytes);
 ```
 The return value is usually equal to the nbytes argument; otherwise, an error has occurred. A common cause for a write error is either filling up a disk or exceeding the file size limit for a given process.
 For a regular file, the write operation starts at the file's current offset. If the O_APPEND option was specified when the file was opened, the file's offset is set to the current end of file before each write operation. After a successful write, the file's offset is incremented by the number of bytes actually written.
+
 ## 9. I/O efficiency
 Most file systems support some kind of read-ahead to improve performance. When sequential reads are detected, the system tries to read in more data than an application requests, assuming that the application will read it shortly.
+
 ## 10. File Sharing
 The kernel uses three data structures to represent an open file, and the relationships among them determine the effect one process has on another with regard to file sharing.
 1. Every process has an entry in the process table. Within each process table entry is a table of open file descriptors, which we can think of as a vector, with one entry per descriptor. Associated with each file descriptor are
@@ -100,17 +110,20 @@ The kernel uses three data structures to represent an open file, and the relatio
 3. Each open file(or device) has a v-node structure that contains information about the type of file and pointers to functions that operate on the file. For most files, the v-node also contains the i-node for the file. This information is read from disk when the file is opened, so that all the pertinent information about the file is readily available. For example, the i-node contains the owner of the file, the size of the file, pointers to where the actual data blocks for the file are located on disk, and so on. (Linux has no v-node. Instead, a generic i-node structure is used. Although the implementations differ, the v-node is conceptually the same as a generic i-node. Both point to an i-node structure specific to the file system).
 > The v-node was invented to provide support for multiple file system types on a single computer system. Sun called this the Virtual File System and called the file system-independent portion of the i-node the v-node. The v-node propagated through various vendor implementations as support for Sun's Network File System(NFS) was added. Instead of splitting the data structures into a v-node and an i-node, Linux uses a file system-independent i-node and a file system-dependent i-node.
 
-If two independent processes have the same file open, Each process that opens the file gets its own file table entry, but only a single v-node table entry is required for a given file. One reason each process gets its own file table entry is so taht each process has its own current offset for the file.\
+If two independent processes have the same file open, Each process that opens the file gets its own file table entry, but only a single v-node table entry is required for a given file. One reason each process gets its own file table entry is so that each process has its own current offset for the file.\
 Given these data structures, we now need to be more specific about what happens with certain operations that we've already described:
-- After each write is complete, the current file offset in the file table entry is incremented by the number of bytes written. If this causes the curren file offset to exceed the current file size, the current file size in the i-node table entry is set to the current file offset.
-- If a file is opened with the O_APPEND flag, a corresponding flag is set in the file status flags of the file table entry. Each time a write is performed for a file with this append flag set, the current file offset in the file table entry is first set to the current file size from the i-node table entry. This forces every write to be appended to the current end of file.
+- After each write is complete, the current file offset in the file table entry is incremented by the number of bytes written. If this causes the current file offset to exceed the current file size, the current file size in the i-node table entry is set to the current file offset.
+- If a file is opened with the `O_APPEND` flag, a corresponding flag is set in the file status flags of the file table entry. Each time a write is performed for a file with this append flag set, the current file offset in the file table entry is first set to the current file size from the i-node table entry. This forces every write to be appended to the current end of file.
 - If a file is positioned to its current end of file using `lseek`, all that happens is the current file offset in the file table entry is set to the current file size from the i-node table entry. (Note that this is not the same as if the file was opened with the O_APPEND flag)
-- The `lseek` function modifies only the current file offset in the file table entry. no I/O takes place.
+- The `lseek` function modifies only the current file offset in the file table entry, no I/O takes place.
 
-It is possible for more than one file descriptor entry to point to the same file table entry, as we'll see when we discuss the dup function in Section 3.12. This also happens after a fork when the parent and the child share the same file table entry for each open descriptor.\
-Note the difference in scope between the file descriptor flags and the file status flags. The former apply only to a single descriptor in a single process, whereas the latter apply to all descriptors in any process that point to the given file table entry. When we describe the `fcntl` function in Section 3.14, we'll see how to fetch and modify both the file descriptor flags and the fil status flags.\
+It is possible for more than one file descriptor entry to point to the same file table entry, as we'll see when we discuss the `dup` function in Section 3.12. This also happens after a fork when the parent and the child share the same file table entry for each open descriptor.\
+Note the difference in scope between the file descriptor flags and the file status flags. The former apply only to a single descriptor in a single process, whereas the latter apply to all descriptors in any process that point to the given file table entry. When we describe the `fcntl` function in Section 3.14, we'll see how to fetch and modify both the file descriptor flags and the file status flags.\
 Everything that we've described so far in this section works fine for multiple processes that are reading the same file. Each process has its own file table entry with its own current file offset. Unexpected results can arise, however, when multiple processes write to the same file. To see how to avoid some surprises, we need to understand the concept of atomic operations.
+
 ## 11. Atomic Operations
+skipped
+
 ### Appending to a File
 Consider a single process that wants to append to the end of a file. Older versions of the UNIX System didn't support the O_APPEND option to open, so the program was coded as follows:
 ```c
@@ -121,23 +134,29 @@ if (write(fd, buf, 100) != 100)
 ```
 The problem here is that our logical operation of "position to the end of file and write" requires two separate function calls(as we've shown it). The solution is to have the positioning to the current end of file and the write be an atomic operation with regard to other processes.\
 Any operation that requires more that one function call cannot be atomic, as there is always the possibility that the kernel might temporarily suspend the process between the two function calls.
+
 ### `pread` and `pwrite` Functions
-The Single UNIX Specification includes two functions taht allow applications to seek and perform I/O atomically: `pread` and `pwrite`.
+The Single UNIX Specification includes two functions that allow applications to seek and perform I/O atomically: `pread` and `pwrite`.
 Calling `pread` is equivalent to calling `lseek` followed by a call to read, with the following exceptions.
 - There is no way to interrupt the two operations that occur when we call `pread`.
 - The current file offset is not updated
 Calling `pwrite` is equivalent to calling `lseek` followed by a call to write, with similar exceptions.
+
 ### Creating a File
-## 12. `dup` and `dup2` Functions (TODO)
+skipped
+
+## 12. `dup` and `dup2` Functions
 An existing file descriptor is duplicated by either of the following functions:
 ```c
 #include <unistd.h>
+
 int dup(int fd);
 int dup2(int fd, int fd2);
+
 // Both return: new file descritor if OK, -1 on error
 ```
-The new file descriptor returned by dup is guaranteed to be the lowest-numbered available file descriptor. With dup2, we specify the value of the new descriptor with the fd2 argument. If fd2 is already open, it is first closed. If fd equals fd2, then dup2 returns fd2 without closing it. Otherwise, the FD_CLOEXEC file descriptor flag is cleared for fd2. so that fd2 is left open if the process calls exec.\
-The new file descriptor that is returned as the value of the functions shares the same file table entry as the fd argument.\
+The new file descriptor returned by `dup` is guaranteed to be the lowest-numbered available file descriptor. With `dup2`, we specify the value of the new descriptor with the `fd2` argument. If `fd2` is already open, it is first closed. If `fd` equals `fd2`, then `dup2` returns `fd2` without closing it. Otherwise, the `FD_CLOEXEC` file descriptor flag is cleared for `fd2`. So that `fd2` is left open if the process calls exec.\
+The new file descriptor that is returned as the value of the functions shares the same file table entry as the `fd` argument.\
 Another way to duplicate a descriptor is with the `fcntl` function, Indeed, the call
 ```c
 dup(fd);
@@ -155,9 +174,10 @@ is equivalent to
 close(fd2);
 fcntl(fd, F_DUPFD, fd2);
 ```
-In ths last case, the dup2 is not exactly the same as a close followed by an `fcntl`. The differences are as follows:
-1. dup2 is an atomic operation, whereas the alternate from involves two function calls. It is possible in the latter case to have a signal catcher called between the close and the `fcntl` that could modify the file descriptors. The same problem could occur if a different thread changes the file descriptors.
-2. There are some errno differences between dup2 and `fcntl`.
+In this last case, the `dup2` is not exactly the same as a close followed by an `fcntl`. The differences are as follows:
+1. `dup2` is an atomic operation, whereas the alternate from involves two function calls. It is possible in the latter case to have a signal catcher called between the close and the `fcntl` that could modify the file descriptors. The same problem could occur if a different thread changes the file descriptors.
+2. There are some `errno` differences between `dup2` and `fcntl`.
+
 ## 13. `sync` `fsync` and `fdatasync` Functions
 Traditional implementations of the UNIX System have a buffer cache or page cache in the kernel through which most disk I/O passes. When we write data to a file, the data is normally copied by the kernel into one of its buffers and queued for writing to disk at some later time. This is called delayed write.\
 The kernel eventually writes all the delayed-write blocks to disk, normally when it needs to reuse the buffer for some other disk block. To ensure consistency of the file system on disk with the contents of the buffer cache, the `sync`, `fsync`, and `fdatasync` functions are provided.
@@ -181,7 +201,6 @@ int fcntl(int fd, int cmd, .../* int arg */);
 ```
 In the examples in this section, the third argument is always an integer, corresponding to the comment in the function prototype just shown. When we describe record locking, however, the third argument becomes a pointer to a structure.\
 The `fcntl` function is used for five different purposes.
- function is used for five different purposes.
 1. duplicate an existing descriptor (cmd=F_DUPFD or F_DUPFD_COLEXEC)
 2. get/set file descriptor flags (cmd=F_GETFD or F_SETFD)
 3. get/set file status flags (cmd=F_GETFL or F_SETFL)
@@ -202,7 +221,7 @@ Each device driver can define its own set of `ioctl` commands. The system, howev
 ## 16. /dev/fd
 Newer systems provide a directory named /dev/fd whose entries are files named 0,1,2, and so on. Opening the file /dev/fd/n is equivalent to duplicating descriptor n, assuming that descriptor n is open.\
 Some systems provide the pathnames /dev/stdin, /dev/stdout, and /dev/stderr. These pathnames are equivalent to /dev/fd/0, /dev/fd/1, and /dev/fd/2 respectively.
-The main use of the /dev/fd files is from the shell. for example:
+The main use of the /dev/fd files is from the shell. For example:
 ```c
 # antipattern
 filter file2 | cat file1 - file3 | lpr
