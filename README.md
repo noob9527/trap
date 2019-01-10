@@ -1,8 +1,9 @@
 # Notes for Programming
 [![Build Status](https://travis-ci.org/noob9527/notes-programming.svg?branch=master)](https://travis-ci.org/noob9527/notes-programming)
 
-### ecmascript 5
-[《JavaScript: The Definitive Guide》](https://book.douban.com/subject/5303032/), write using mocha and shouldjs.
+### Javascript
+#### Ecmascript 5
+Test cases are mainly from [《JavaScript: The Definitive Guide》](https://book.douban.com/subject/5303032/)
 - [Array](./javascript/ecmascript5/Array.js)
 - [Function](./javascript/ecmascript5/Function.js)
 - [Json](./javascript/ecmascript5/Json.js)
@@ -13,8 +14,8 @@
 - [String](./javascript/ecmascript5/String.js)
 - [Syntax](./javascript/ecmascript5/Syntax.js)
 
-### ecmascript 6
-[Understanding ECMAScript6](https://leanpub.com/understandinges6/read/), [ECMAScript 6 入门](http://es6.ruanyifeng.com/), write using ava and chai.
+#### Ecmascript 6
+Test cases are mainly from [Understanding ECMAScript6](https://leanpub.com/understandinges6/read/), [ECMAScript 6 入门](http://es6.ruanyifeng.com/)
 - [ADT](./javascript/ecmascript6/ADT.js)
 - [Array](./javascript/ecmascript6/Array.js)
 - [BlockScope](./javascript/ecmascript6/BlockScope.js)
@@ -32,8 +33,8 @@
 - [Symbol](./javascript/ecmascript6/Symbol.js)
 - [Syntax](./javascript/ecmascript6/Syntax.js)
 
-### typescript
-[《Official Handbook》](https://www.typescriptlang.org/docs/home.html), write using jest.
+### Typescript
+Test cases are mainly from [《Official Handbook》](https://www.typescriptlang.org/docs/home.html)
 - [AdvancedTypes](./typescript/tests/basic/AdvancedTypes.ts)
 - [BasicTypes](./typescript/tests/basic/BasicTypes.ts)
 - [Classes](./typescript/tests/basic/Classes.ts)
@@ -46,8 +47,8 @@
 - [TypeInference](./typescript/tests/basic/TypeInference.ts)
 - [StrictNullChecks](./typescript/tests/basic/strictNullChecks/StrictNullChecks.ts)
 
-### rxjs
-[《Official Manual》](http://reactivex.io/rxjs/manual/overview.html), write using jest.
+#### Rxjs
+Test cases are mainly from [《Official Manual》](http://reactivex.io/rxjs/manual/overview.html)
 - [Observable](./typescript/tests/rxjs/Observable.ts)
 - [Subject](./typescript/tests/rxjs/Subject.ts)
 - [Scheduler](./typescript/tests/rxjs/Scheduler.ts)
@@ -59,8 +60,8 @@
     - [Transformation](./typescript/tests/rxjs/operator/Transformation.ts)
     - [Utility](./typescript/tests/rxjs/operator/Utility.ts)
 
-### kotlin
-[《Kotlin in Action》](https://book.douban.com/subject/26687631/), write using junit5 and assertj.
+### Kotlin
+Test cases are mainly from [《Kotlin in Action》](https://book.douban.com/subject/26687631/)
 - [Annotation](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/annotation/AnnotationSpec.kt)
 - [Collection](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/collection/CollectionSpec.kt)
 - [Extension](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/extension/ExtensionSpec.kt)
@@ -80,11 +81,27 @@
 - [Reflection](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/ReflectionSpec.kt)
 - [Syntax](./kotlin/src/test/kotlin/cn/staynoob/trap/kotlin/basic/SyntaxSpec.kt)
 
-### python
-TBD, write using unittest
+### Python
+basic
+- [boolean](./python/basic/test_boolean.py)
+- [class](./python/basic/test_class.py)
+- [exception](./python/basic/test_exception.py)
+- [function](./python/basic/test_function.py)
+- [magic](./python/basic/test_magic.py)
+- [miscellaneous](./python/basic/test_miscellaneous.py)
+- [operator](./python/basic/test_operator.py)
+- [property](./python/basic/test_property.py)
+- [sequence](./python/basic/test_sequence.py)
+- [string](./python/basic/test_string.py)
+- [syntax](./python/basic/test_syntax.py)
+- [unpacking](./python/basic/test_unpacking.py)
 
-### shell
-[official manual](https://www.gnu.org/software/bash/manual/bash.html#Command-Substitution), [shell styleguide](https://google.github.io/styleguide/shell.xml), write using bats
+stdlib
+- [argparse](./python/stdlib/test_argparse.py)
+- [unittest](./python/stdlib/test_unittest.py)
+
+### Shell
+Test cases are mainly from [official manual](https://www.gnu.org/software/bash/manual/bash.html#Command-Substitution), [shell styleguide](https://google.github.io/styleguide/shell.xml)
 - [array](./shell/test/basic/array.bats)
 - [command](./shell/test/basic/command.bats)
 - [parameter](./shell/test/basic/parameter.bats)
