@@ -290,10 +290,24 @@ Here, fs.getPath is the analog of Paths.get for an arbitrary file system.
 
 ## 6 Memory-Mapped Files
 Most operating systems can take advantage of a virtual memory implementation to "map" a file, or a region of a file, into memory. Then the file can be accessed as if it were an in-memory array, which is much faster than the traditional file operations.
+
 ### Memory-Mapped File Performance
 skipped
+
 ### The Buffer Data Structure
-skipped
+In this section, we briefly describe the basic operations on Buffer objects. A buffer is an array of values of the same type. The Buffer class is an abstract class with concrete subclasses `ByteBuffer`, `CharBuffer` et cetera.\
+In practice, you will most commonly use `ByteBuffer` and `CharBuffer`. A buffer has
+- A capacity that never changes.
+- A position at which the next value is read or written.
+- A limit beyond which reading and writing is meaningless.
+- Optionally, a mark for repeating a read or write operation.
+
+The principal purpose of a buffer is a "write then read" cycle. At the outset, the buffer's position is 0 and the limit is the capacity. Keep calling put to add values to the buffer. When you run out of data or reach the capacity, it is time to switch to reading.\
+Call flip to set the limit to the current position and the position to 0. Now keep calling get while the remaining method (which returns limit - position) is positive. When you have read all values in the buffer, call clear to prepare the buffer for the next writing cycle. The clear method resets the position to 0 and the limit to the capacity.\
+If you want to reread the buffer, use rewind or mark/reset.\
+To get a buffer, call a static method such as ByteBuffer.allocate or ByteBuffer.wrap.\
+Then, you can fill a buffer from a channel, or write its contents to a channel.
+
 ### File Locking
 When multiple simultaneously executing programs need to modify the same file, they need to communicate in some way, or the file can easily become damaged. File locks can solve this problem. A file lock controls access to a file or a range of bytes within a file.\
 Suppose your application saves a configuration file with user preferences. If a user invokes two instances of the application, it could happen that both of them want to write the configuration file at the same time. In that situation, the first instance should lock the file. When the second instance finds the file locked, it can decide to wait until the file is unlocked or simply skip the writing process.\
