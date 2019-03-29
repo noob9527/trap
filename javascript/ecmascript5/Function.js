@@ -206,7 +206,7 @@ describe('Function',function () {
                 ctor.prototype.should.equal(obj);
                 this.__proto__.should.equal(obj);
             }
-            new ctor;
+            new ctor; // execute ctor as a constructor
         });
         it('除bind方法返回的函数外,js中每个函数都自动拥有一个prototype属性,该属性为一个对象' +
             '且该对象包含唯一一个不可枚举属性constructor，该属性的值指向关联的函数', function () {

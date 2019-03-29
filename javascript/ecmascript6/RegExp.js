@@ -4,6 +4,17 @@ import chai from 'chai';
 const should = chai.should();
 const utf16str = '\uD83D\uDC2A';
 
+test('es7现在已经支持反向(lookbehind)查找', t => {
+    const pattern1 = /(?<=a)b/;
+    const pattern2 = /(?<!a)b/;
+
+    pattern1.test('ab').should.true;
+    pattern1.test('bb').should.false;
+
+    pattern2.test('ab').should.false;
+    pattern2.test('bb').should.true;
+});
+
 // u flag
 test('u修饰符，用于处理四字节的Unicode字符', t => {
     /^\uD83D/.test(utf16str).should.true;

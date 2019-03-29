@@ -77,10 +77,11 @@ describe('RegExp', function () {
             pattern.test('ab').should.false();
             pattern.exec('aa')[0].should.equal('a');
         });
-        it('js目前不支持lookbehind(目前在es7提案阶段)', function () {
-            (function () {var pattern1 = /(?<=a)b/;}).should.throw();
-            (function () {var pattern2 = /(?<!a)b/;}).should.throw();
-        });
+        // es7 已经支持反向查找
+        // it('js目前不支持lookbehind(目前在es7提案阶段)', function () {
+        //     (function () {var pattern1 = /(?<=a)b/;}).should.throw();
+        //     (function () {var pattern2 = /(?<!a)b/;}).should.throw();
+        // });
         it('使用捕获与引用来替代lookbehind', function () {
             'static int'.replace(/(static\s)int/, '$1long').should.equal('static long');
         });
@@ -144,13 +145,12 @@ describe('RegExp', function () {
             var pattern = /(\w)(\d)/g;
             var str = 'a1b2c3';
             str.match(pattern).should.eql(['a1', 'b2', 'c3']);
+
             pattern.lastIndex.should.equal(0);
             
-            var res = pattern.exec(str);
-            delete res.index;
-            delete res.input;
+            var res2 = Array.from(pattern.exec(str));
             pattern.lastIndex.should.equal(2);
-            res.should.eql(['a1','a','1']);
+            res2.should.eql(['a1','a','1']);
         });
         it('如果exec没有发现匹配结果，则会自动将lastIndex重置为0', function () {
             var pattern = /\d/g;

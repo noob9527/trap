@@ -151,12 +151,16 @@ test('使用extend关键字实现继承', t => {
     //es5继承
     const Child1 = function (name) {
         this.name = name;
+        // Parent.apply(this, arguments);
     }
     //Child1的实例继承Parent的实例
     Child1.prototype.__proto__ = Parent.prototype;
+    Child1.__proto__ = Parent;
+
     const child1 = new Child1('foo');
     child1.sayName().should.equal('foo');
     (child1 instanceof Parent).should.true;
+
     //es6
     class Child2 extends Parent {
     }

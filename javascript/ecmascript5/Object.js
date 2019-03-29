@@ -137,14 +137,12 @@ describe('Object', function () {
         });
     });
 
-    describe('属性的特性', function () {
+    describe.only('属性的特性', function () {
         it('使用Object.getOwnPropertyDescriptor方法获取对象自有属性的描述符', function(){
-            var Parent = function(){
-                this.parent = 'parent';
-            }
             var Child = function(){
                 this.child = 'child';
             }
+            Child.prototype.parent = 'parent';
             var child = new Child();
 
             should(Object.getOwnPropertyDescriptor(child, 'parent'))
