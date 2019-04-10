@@ -1,6 +1,6 @@
 package cn.staynoob.trap.java.basic.concurrent;
 
-import cn.staynoob.trap.java.basic.utils.TestThread;
+import cn.staynoob.trap.java.basic.testutil.TestThread;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

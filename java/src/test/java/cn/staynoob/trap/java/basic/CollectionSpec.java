@@ -7,8 +7,43 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CollectionSpec {
+    @Nested
+    class ConcurrentModificationExceptionSpec {
+        @Test
+        @DisplayName("iterator.next() may throw ConcurrentModificationException if the collection has been modified in certain way")
+        void test100() {
+            List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3));
+            Iterator<Integer> iterator = list.iterator();
+
+            // will cause exception
+            list.remove(1);
+//            list.add(4);
+
+            // will not cause exception
+//            list.set(0, 4);
+//            list.set(2, 4);
+
+            assertThatThrownBy(iterator::next)
+                    .isInstanceOf(ConcurrentModificationException.class);
+        }
+
+        @Test
+        @DisplayName("use iterator.remove() to remove element while iterating")
+        void test200() {
+            List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3));
+
+            Iterator<Integer> iterator = list.iterator();
+            while (iterator.hasNext()) {
+                iterator.next();
+                iterator.remove();
+            }
+            assertThat(list).isEmpty();
+        }
+
+    }
 
     @Nested
     class StackSpec {

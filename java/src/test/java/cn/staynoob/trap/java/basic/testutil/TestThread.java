@@ -1,4 +1,4 @@
-package cn.staynoob.trap.java.basic.utils;
+package cn.staynoob.trap.java.basic.testutil;
 
 /**
  * if any exceptions is thrown by a new thread

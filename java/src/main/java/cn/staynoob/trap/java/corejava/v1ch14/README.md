@@ -722,7 +722,7 @@ A disadvantage of this approach is that you may wait needlessly if the first tas
 Start with an executor, obtained in the usual way. Then construct an `ExecutorCompletionService`. Submit tasks to the completion service. The service manages a blocking queue of Future objects, containing the results of the submitted tasks as they become available.
 
 ### 14.9.4 The Fork-Join Framework
-Some applications use a large number of threads that are mostly idle. An example would be a web server that uses one thread per connection. Other applications use one thread per processor core, in order to carry out computationally intensive tasks, such as image or vidwo processing. The fork-join framework, which appeared in Java SE 7, is designed to support the latter. Suppose you have a processing task that naturally decomposes into subtasks, like this:
+Some applications use a large number of threads that are mostly idle. An example would be a web server that uses one thread per connection. Other applications use one thread per processor core, in order to carry out computationally intensive tasks, such as image or video processing. The fork-join framework, which appeared in Java SE 7, is designed to support the latter. Suppose you have a processing task that naturally decomposes into subtasks, like this:
 ```java
 if (problemSize < threshold) {
     // solve problem directly
@@ -839,7 +839,7 @@ The await method takes an optional timeout parameter:
 ```java
 barrier.await(100, TimeUnit.MILLISECONDS);
 ```
-If any of the threads waiting for the barrier leaves the barrier, then the barrier breaks. (A thread can leave because it called await with a timeout of because it was interrupted.) In that case, the `await` method for all other threads throws a `BrokenBarrierException`. Threads that are already waiting have their await call terminated immediately.\
+If any of the threads waiting for the barrier leaves the barrier, then the barrier breaks. (A thread can leave because it called await with a timeout or because it was interrupted.) In that case, the `await` method for all other threads throws a `BrokenBarrierException`. Threads that are already waiting have their await call terminated immediately.\
 You can supply an optional barrier action that is executed when all threads have reached the barrier:
 ```java
 CyclicBarrier barrier = new CyclicBarrier(nthreads, barrierAction);

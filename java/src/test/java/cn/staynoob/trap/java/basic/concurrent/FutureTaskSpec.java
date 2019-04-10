@@ -1,6 +1,6 @@
 package cn.staynoob.trap.java.basic.concurrent;
 
-import cn.staynoob.trap.java.basic.utils.TestThread;
+import cn.staynoob.trap.java.basic.testutil.TestThread;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -39,6 +39,9 @@ public class FutureTaskSpec {
                 .isInstanceOf(ExecutionException.class);
     }
 
+    // You can cancel the computation with the cancel method. If the computation has
+    // not yet started, it is canceled and will never start. If the computation is currently
+    // in progress, it is interrupted if the mayInterrupt parameter is true .
     @Test
     @DisplayName("interrupting a computation by set the mayInterrupt parameter to true")
     void test200() throws InterruptedException {

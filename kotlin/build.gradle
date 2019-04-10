@@ -7,6 +7,7 @@ buildscript {
         junit_platform_version = '1.0.2'
         junit_jupiter_version = '5.0.2'
         jackson_kotlin_module_version = '2.9.0'
+        rx_kotlin_version = '2.3.0'
     }
 
     repositories {
@@ -39,6 +40,7 @@ dependencies {
 
     testCompile("com.fasterxml.jackson.module:jackson-module-kotlin:${jackson_kotlin_module_version}")
     testCompile("ma.glasnost.orika:orika-core:1.5.0")
+    testCompile("io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version")
 
     testCompile("org.junit.jupiter:junit-jupiter-api:${junit_jupiter_version}")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:${junit_jupiter_version}")

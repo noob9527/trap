@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package protobuf;
+
+option java_package = "cn.staynoob.trap.java.grpc.protobuf";
+option java_outer_classname = "FixtureProto";
+
+import "google/protobuf/wrappers.proto";
+
+message Person {
+    string name = 1;
+    int32 age = 2;
+    google.protobuf.StringValue stringWrapper = 3;
+}
+
