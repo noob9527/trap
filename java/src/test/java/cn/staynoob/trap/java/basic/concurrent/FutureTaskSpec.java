@@ -10,7 +10,7 @@ import java.util.concurrent.FutureTask;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class FutureSpec {
+public class FutureTaskSpec {
     @Test
     @DisplayName("the computation will never start if the future is cancelled before the computation start")
     void test100() {

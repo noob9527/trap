@@ -22,9 +22,8 @@ public class TestThread {
     /**
      * wait for the thread to terminate
      * if any uncaught exception occurs, throw it to main thread
-     *
      */
-    public void join(){
+    public void join() {
         try {
             thread.join();
         } catch (InterruptedException e) {
@@ -43,5 +42,9 @@ public class TestThread {
 
     public Thread getThread() {
         return thread;
+    }
+
+    public Thread.State getState() {
+        return thread.getState();
     }
 }
