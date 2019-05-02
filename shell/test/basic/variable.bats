@@ -83,7 +83,9 @@ load '../../lib/bats-assert/load'
         echo 'foo'
         return 0
     }
+    # $(command) captures the output of command
     [[ $(foo) = 'foo' ]]
+    # ${paramter} subsititutes the paramter with its value
     [[ -z ${foo} ]]
     run foo
     assert_equal $status 0

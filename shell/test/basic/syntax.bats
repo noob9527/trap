@@ -20,7 +20,7 @@ load '../../lib/bats-assert/load'
     assert_equal 'baz' $(fn 3)
 }
 
-@test 'if语句2' {
+@test 'if语句执行命令返回值为0时执行 true block' {
     local foo
     function fn () {
         return $1
@@ -37,6 +37,26 @@ load '../../lib/bats-assert/load'
         foo='bar'
     fi
     assert_equal $foo 'bar'
+}
+
+@test 'if语句执行取反运算后，无法得到原命令的状态码' {
+    function fn1() {
+        return 2
+    }
+    run fn1
+    assert_failure
+
+    function fn2() {
+        # 这里代码的本意是，如果 fn1 执行失败，则返回 fn1 的执行状态码
+        # 但这里其实返回的是 0
+        if ! fn1; then
+            return $?
+        else
+            return 1
+        fi
+    }
+    run fn2
+    assert_success
 }
 
 # case statement
