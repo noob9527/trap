@@ -84,6 +84,8 @@ Test cases are mainly from [《Kotlin in Action》](https://book.douban.com/subj
 ### Python
 basic
 - [boolean](./python/basic/test_boolean.py)
+- [built-in-type](./python/basic/test_built-in-type.py)
+- [built-in-function](./python/basic/test_built-in-function.py)
 - [class](./python/basic/test_class.py)
 - [exception](./python/basic/test_exception.py)
 - [function](./python/basic/test_function.py)
@@ -92,8 +94,8 @@ basic
 - [operator](./python/basic/test_operator.py)
 - [property](./python/basic/test_property.py)
 - [sequence](./python/basic/test_sequence.py)
-- [string](./python/basic/test_string.py)
 - [syntax](./python/basic/test_syntax.py)
+- [string](./python/basic/test_string.py)
 - [unpacking](./python/basic/test_unpacking.py)
 
 stdlib

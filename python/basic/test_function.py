@@ -25,3 +25,7 @@ class FunctionTestCase(unittest.TestCase):
 
         res = fn(foo="foo", bar="bar")
         self.assertEqual(res, {'foo': 'foo', 'bar': 'bar'})
+
+    def testLambda(self):
+        res = tuple(map(lambda e: e * 2, (1, 2, 3)))
+        self.assertEqual(res, (2, 4, 6))

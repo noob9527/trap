@@ -101,3 +101,8 @@ class SequenceTestCase(unittest.TestCase):
         origin2[len(origin2):] = [4, 5]
         self.assertEqual(origin1, [1, 2, 3, 4, 5])
         self.assertEqual(origin2, [1, 2, 3, 4, 5])
+
+    def testMap(self):
+        origin = [1, 2]
+        res = list(map(lambda e: e * 2, origin))
+        self.assertEqual(res, [2, 4])
