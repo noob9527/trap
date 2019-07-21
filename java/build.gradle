@@ -15,10 +15,15 @@ buildscript {
         protocVersion = protobufVersion
     }
 
-    repositories {
-        mavenCentral()
+    ext.repos = {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         jcenter()
+        mavenCentral()
     }
+    
+    repositories repos
+
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath("org.junit.platform:junit-platform-gradle-plugin:$junitPlatformVersion")
@@ -39,8 +44,10 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
-repositories {
-    mavenCentral()
+repositories repos
+
+allprojects {
+    repositories repos
 }
 
 dependencies {

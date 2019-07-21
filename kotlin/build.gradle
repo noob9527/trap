@@ -10,10 +10,14 @@ buildscript {
         rx_kotlin_version = '2.3.0'
     }
 
-    repositories {
-        mavenCentral()
+    ext.repos = {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         jcenter()
+        mavenCentral()
     }
+    repositories repos
+    
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath("org.jetbrains.kotlin:kotlin-noarg:$kotlin_version")
@@ -29,9 +33,10 @@ noArg {
     annotation("cn.staynoob.trap.kotlin.basic.utils.NoArgConstructor")
 }
 
-repositories {
-    mavenCentral()
-    jcenter()
+repositories repos
+
+allprojects {
+    repositories repos
 }
 
 dependencies {
