@@ -7,6 +7,7 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import java.util.*
 
 /**
  * @see cn.staynoob.trap.java.basic.GenericSpec
@@ -185,21 +186,26 @@ class GenericSpec {
             /**
              * <out T>等价于<? extends T>
              * <in T>等价于<? super T>
+             * The bounded wildcard parameter is only needed when your parameter class can be used as
+             * both consumer **and** producer, and your method only use it as consumer **or** producer.
              * @see cn.staynoob.trap.java.basic.GenericSpec#copyData
              */
             @Test
             @DisplayName("使用点变型(Use-site variance)")
-            internal fun test100() {
+            fun test100() {
                 fun <T> copyData(
-                        src: MutableCollection<out T>,
-                        dest: MutableCollection<in T>
+                        src: Deque<out T>,
+                        dest: Deque<in T>
                 ) {
                     dest.addAll(src)
                 }
 
-                val numList = ArrayList<Number>()
-                val intList = mutableListOf(1, 2, 3)
-                copyData(intList, numList)
+                val int = LinkedList<Int>()
+                        .apply {
+                            addAll(listOf(1, 2, 3))
+                        }
+                val num = LinkedList<Number>()
+                copyData(int, num)
             }
 
             @Nested
