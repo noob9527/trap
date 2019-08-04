@@ -7,5 +7,10 @@ class StringTestCase(unittest.TestCase):
 
     def testStringFormat(self):
         self.assertEqual('foo%s' % 'bar', 'foobar')
-        dic = {'foo': 'foo', 'bar': 'bar'}
-        self.assertEqual('foo%(bar)s' % dic, 'foobar')
+        dic = {'foo': 'f', 'bar': 'b'}
+        self.assertEqual('foo b', 'foo %(bar)s' % dic)
+
+    def testNewFormat(self):
+        foo = 'f'
+        bar = 'b'
+        self.assertEqual(f'{foo} {bar}', 'f b')
