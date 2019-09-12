@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import unittest
 from argparse import ArgumentParser
+from argparse import ArgumentError
 
 
 # https://docs.python.org/3.5/library/argparse.html#argparse.ArgumentParser
@@ -47,3 +48,29 @@ class ArgParseTestCase(unittest.TestCase):
         res = parser.parse_args('')
         self.assertIsNone(res.foo)
         self.assertEqual(res.bar, 'BAR')
+
+    def test_subparsers(self):
+        parser = ArgumentParser()
+        subparsers = parser.add_subparsers(help='sub-command help')
+        parser_foo = subparsers.add_parser('foo', help='foo help')
+        parser_bar = subparsers.add_parser('bar', help='bar help')
+
+        parser_foo.add_argument('--foo')
+        parser_bar.add_argument('--bar')
+
+        res1 = parser.parse_args(['foo', '--foo', 'foo_arg'])
+        res2 = parser.parse_args(['bar', '--bar', 'bar_arg'])
+
+        self.assertEqual(res1.foo, 'foo_arg')
+        self.assertEqual(res2.bar, 'bar_arg')
+
+    def test_mutually_exclusive_group(self):
+        parser = ArgumentParser()
+        group = parser.add_mutually_exclusive_group()
+        group.add_argument('--foo')
+        group.add_argument('--bar')
+
+        res1 = parser.parse_args(['--foo', 'foo_arg'])
+        res2 = parser.parse_args(['--bar', 'bar_arg'])
+        self.assertEqual(res1.foo, 'foo_arg')
+        self.assertEqual(res2.bar, 'bar_arg')
