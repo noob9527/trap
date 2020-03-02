@@ -8,12 +8,12 @@ java:
 
 language: python
 python:
-  - "3.5"
+  - "3.6"
 
-install: 
+install:
   - cd $TRAVIS_BUILD_DIR/javascript && npm install
   - cd $TRAVIS_BUILD_DIR/typescript && npm install
-script: 
+script:
   - cd $TRAVIS_BUILD_DIR/javascript && npm run es5test
   - cd $TRAVIS_BUILD_DIR/javascript && npm run test
   - cd $TRAVIS_BUILD_DIR/typescript && npm test
