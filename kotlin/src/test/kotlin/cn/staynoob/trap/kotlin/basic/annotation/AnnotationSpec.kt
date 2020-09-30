@@ -4,6 +4,7 @@ package cn.staynoob.trap.kotlin.basic.annotation
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.jvm.javaField
@@ -34,8 +35,10 @@ class AnnotationSpec {
         class Foo {
             @Test200PropertyAnnotation
             val foo: String = "foo"
+
             @Test200FieldAnnotation
             val bar: String = "bar"
+
             @Fixture.JavaFieldAnnotation
             val baz: String = "baz"
         }
@@ -56,6 +59,7 @@ class AnnotationSpec {
         class Foo {
             @property:Test300Annotation
             val foo: String = "foo"
+
             @field:Test300Annotation
             val bar: String = "bar"
         }
@@ -65,11 +69,14 @@ class AnnotationSpec {
         assertThat(Foo::bar.javaField?.annotations?.size).isEqualTo(1)
     }
 
-    annotation class Test400Annotation(val name:String)
+    annotation class Test400Annotation(val name: String)
+
     @Test400Annotation("foo")
     fun test400Foo() = Unit
+
     @Test400Annotation("bar")
     fun test400Bar() = Unit
+
     @Test
     @DisplayName("使用findAnnotation方法获取指定元素上的指定注解")
     internal fun test400() {
@@ -78,4 +85,57 @@ class AnnotationSpec {
         assertThat(this::test400Bar.findAnnotation<Test400Annotation>()?.name)
                 .isEqualTo("bar")
     }
+
+    //    @Inherited
+    @Target(AnnotationTarget.PROPERTY, AnnotationTarget.CLASS)
+    annotation class Test500Annotation()
+
+    @Test500Annotation
+    abstract class Test500Parent {
+        @Test500Annotation
+        val prop1: String = ""
+
+        @Test500Annotation
+        abstract val prop2: String
+
+        @Test500Annotation
+        open val prop3: String = ""
+    }
+
+    interface Test500Interface {
+        @Test500Annotation
+        val prop4: String
+    }
+
+    class Test500Child : Test500Parent(), Test500Interface {
+        override val prop2: String = ""
+        override val prop3: String = ""
+        override val prop4: String = ""
+    }
+
+    @Nested
+    inner class AnnotationInheritance {
+        @Test
+        @DisplayName("kotlin @Inherited 注解没有效果")
+        fun test100() {
+            assertThat(Test500Parent::class.findAnnotation<Test500Annotation>()).isNotNull()
+
+            assertThat(Test500Child::class.findAnnotation<Test500Annotation>()).isNull()
+        }
+
+        @Test
+        @DisplayName("未被重写的属性可以找到注解")
+        fun test200() {
+            assertThat(Test500Child::prop1.findAnnotation<Test500Annotation>()).isNotNull()
+        }
+
+        @Test
+        @DisplayName("重写的属性无法找到注解")
+        fun test300() {
+            assertThat(Test500Child::prop2.findAnnotation<Test500Annotation>()).isNull()
+            assertThat(Test500Child::prop3.findAnnotation<Test500Annotation>()).isNull()
+            assertThat(Test500Child::prop4.findAnnotation<Test500Annotation>()).isNull()
+        }
+    }
+
 }
