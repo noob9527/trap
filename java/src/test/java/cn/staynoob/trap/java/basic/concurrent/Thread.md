@@ -12,7 +12,7 @@ try {
 ```
 
 ### UncaughtExceptionHandler
-An exception can ber terminated by an uncaught exception, however, there is no catch clause to which the exception can be propagated. As following code shows, you cannot catch an exception thrown by another thread directly.
+A thread can be terminated by an uncaught exception, however, there is no catch clause to which the exception can be propagated. As following code shows, you cannot catch an exception thrown by another thread directly.
 ```java
 Runnable runnable = () -> {
     throw new RuntimeException("gocha!");
