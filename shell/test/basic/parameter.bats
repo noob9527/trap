@@ -19,6 +19,11 @@ load '../../lib/bats-assert/load'
     assert_equal "$*" "1 2 3"
     # assert_equal "$@" "1 2 3"
     echo "$@" # 1 2 3
+
+    # https://unix.stackexchange.com/questions/92978/what-does-this-2-mean-in-shell-scripting
+    echo "${@:1}" # 1 2 3
+    echo "${@:2}" # 2 3
+
     assert_equal $? 0 # 最近一条命令的返回状态码
     assert_equal $# 3 # 参数个数
     [[ $$ -gt 1 ]]  # shell pid
